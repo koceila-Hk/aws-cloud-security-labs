@@ -7,8 +7,7 @@ Architecture de 4 VPC reliés par appairage, avec trois façons de sortir vers I
 ## Architecture
 
 ```
-
-
+<img width="750" alt="Architecture multi-VPC : 4 VPC, peerings pcx-13 et pcx-24, IGW, NAT, Squid, HAProxy" src="docs/architecture.png" />
 
 ```
 
