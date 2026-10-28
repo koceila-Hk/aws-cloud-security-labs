@@ -7,22 +7,9 @@ Architecture de 4 VPC reliés par appairage, avec trois façons de sortir vers I
 ## Architecture
 
 ```
-                 Internet  (visiteurs + administrateur)
-                    │                         │
-                  IGW1                      IGW2
-┌─ VPC1 10.1.0.0/16 ┼──────────┐   ┌─ VPC2 10.2.0.0/16 ┼──────────┐
-│ Subnet1 public  [NACL-1]     │   │ Subnet3 public               │
-│   EC1 : Squid :3128          │   │   EC4 : bastion SSH          │
-│         HAProxy :80          │   │   NAT Gateway                │
-│ Subnet2 privé                │   │ Subnet4 privé                │
-│   EC2 (Ubuntu) apt via Squid │   │   EC5 : sort via NAT (443)   │
-└──────────────┬───────────────┘   └──────────────┬───────────────┘
-            pcx-13                             pcx-24
-┌─ VPC3 10.3.0.0/16 ───────────┐   ┌─ VPC4 10.4.0.0/16 ───────────┐
-│ Subnet5 privé                │   │ Subnet6 privé                │
-│   EC3 : Apache :80           │   │   EC6 (AL2023)  EC7 (Ubuntu) │
-│   aucune passerelle Internet │   │   aucune passerelle Internet │
-└──────────────────────────────┘   └──────────────────────────────┘
+
+
+
 ```
 
 | Instance | IP privée | Rôle |
@@ -59,9 +46,9 @@ Architecture de 4 VPC reliés par appairage, avec trois façons de sortir vers I
 ## Déploiement
 
 ```bash
-cp terraform.tfvars.example terraform.tfvars   # mon_ip = "x.x.x.x/32"
+terraform fmt
 terraform init
-terraform plan      # 42 ressources
+terraform plan      
 terraform apply
 ```
 
