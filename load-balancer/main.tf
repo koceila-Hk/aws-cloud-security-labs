@@ -15,7 +15,7 @@ provider "aws" {
   }
 }
 
-# ==================== Parametres ====================
+# ==================== params ====================
 variable "mon_ip" {
   description = "Mon IP publique en /32, seule autorisee en SSH sur l'admin"
   type        = string
@@ -41,7 +41,7 @@ resource "aws_vpc" "vpc" {
 
 }
 
-# ==================== Sous-reseaux ====================
+# ==================== Subnet ====================
 # Admin : 10.5.0.0/24
 resource "aws_subnet" "admin" {
   vpc_id            = aws_vpc.vpc.id
