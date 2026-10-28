@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  TP NOTÉ — Tests de l'architecture (1 capture par test)
-#  Usage : ./tests.sh            (dans le dossier du main.tf, après apply)
 #  Prérequis : eval $(ssh-agent) && ssh-add ~/.ssh/labsuser.pem
 # =============================================================================
 export AWS_DEFAULT_REGION=us-east-1 AWS_PAGER=""
@@ -21,7 +19,6 @@ t() { echo; echo "##### $* #####"; }
 ssh-add -l >/dev/null 2>&1 || { echo "[!] eval \$(ssh-agent) && ssh-add ~/.ssh/labsuser.pem"; exit 1; }
 
 # Les premières connexions directes enregistrent les clés des bastions
-# (les options -o ne s'appliquent pas aux hôtes de rebond -J)
 t "T0  Attente : Squid + HAProxy actifs sur EC1"
 until ssh $SSHO ec2-user@"$EC1" 'systemctl is-active --quiet squid haproxy' 2>/dev/null; do sleep 10; done
 echo "EC1 prêt"
