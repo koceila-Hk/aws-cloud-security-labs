@@ -50,8 +50,9 @@ Chaque lab suit la même démarche : **concevoir → déployer en IaC → prouve
 cd multi-vpc-secure-network          # ou load-balancer
 cp terraform.tfvars.example terraform.tfvars
 # renseigner son IP publique : curl -s https://checkip.amazonaws.com
+terraform fmt
 terraform init
-terraform plan                       # relire le plan avant d'appliquer
+terraform plan                       
 terraform apply
 # ... tests ...
 terraform destroy
