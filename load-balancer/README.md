@@ -5,21 +5,7 @@ entre 3 reverse proxies **Nginx**, qui relaient vers 3 serveurs **Apache** priv�
 La perte d'un serveur web est compensée automatiquement, sans erreur côté client.
 
 ## Architecture
-
-```
-                        Internet
-                           │
-                  ALB (internet-facing, 3 AZ)
-           ┌───────────────┼───────────────┐
-      Proxy 1 (1a)     Proxy 2 (1b)     Proxy 3 (1c)      sous-réseaux publics
-      10.5.10.0/24     10.5.11.0/24     10.5.12.0/24      10.5.10-12.0/24
-           └──────── upstream Nginx ───────┘
-           ┌───────────────┼───────────────┐
-       Web 1 (1a)      Web 2 (1b)       Web 3 (1c)        sous-réseaux privés
-       Apache           Apache           Apache           10.5.2-4.0/24
-
-  Sous-réseau admin 10.5.0.0/24 : machine admin (bastion SSH) + NAT Gateway
-```
+<img width="750" alt="LB" src="docs/architecture1.png" />
 
 ## Bascule automatique sur deux niveaux
 
